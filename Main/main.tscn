@@ -1,0 +1,57 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfx5ey3rapdxq"]
+
+[ext_resource type="Script" path="res://Main/main.gd" id="1_3m025"]
+[ext_resource type="Texture2D" uid="uid://dnc1stybfig0p" path="res://art/grass/uncut.png" id="1_45chr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qgv4c"]
+font_size = 64
+outline_size = 20
+outline_color = Color(0, 0.380392, 0.109804, 1)
+
+[node name="Main" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3m025")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_45chr")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 300
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "Revenge of tha Lawn"
+label_settings = SubResource("LabelSettings_qgv4c")
+horizontal_alignment = 1
+
+[node name="Tap to Start" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Tap to Start"
+label_settings = SubResource("LabelSettings_qgv4c")
+horizontal_alignment = 1

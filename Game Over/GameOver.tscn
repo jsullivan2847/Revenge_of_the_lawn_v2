@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct4ff5g6q8sky"]
+
+[ext_resource type="LabelSettings" uid="uid://daudlhrhvensa" path="res://art/fonts/game_over_text.tres" id="1_8dcog"]
+[ext_resource type="Script" path="res://Game Over/GameOver.gd" id="1_a4syv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ec4ki"]
+font_size = 64
+font_color = Color(0.835294, 0.172549, 0.286275, 1)
+outline_size = 20
+outline_color = Color(0, 0.380392, 0.109804, 1)
+
+[node name="GameOver" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_a4syv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.137255, 0.137255, 0.117647, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_top = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 300
+
+[node name="Label" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 0
+text = "GAME OVER"
+label_settings = ExtResource("1_8dcog")
+horizontal_alignment = 1
+
+[node name="Tap to Start" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Tap to try again"
+label_settings = SubResource("LabelSettings_ec4ki")
+horizontal_alignment = 1

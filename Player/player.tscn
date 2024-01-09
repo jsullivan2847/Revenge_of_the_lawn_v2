@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c77jrmva115i6"]
+
+[ext_resource type="Script" path="res://Player/player.gd" id="1_4f3he"]
+[ext_resource type="Texture2D" uid="uid://d4kglb6gg4wns" path="res://art/player/lawnmower_down.png" id="1_8aqy4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wma8x"]
+size = Vector2(18.4071, 20.6955)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pasa4"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_8aqy4")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Player" type="CharacterBody2D"]
+position = Vector2(351, 1010)
+script = ExtResource("1_4f3he")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-3.60001, 5.29999)
+scale = Vector2(4.52, 15.24)
+shape = SubResource("RectangleShape2D_wma8x")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-3, 3)
+sprite_frames = SubResource("SpriteFrames_pasa4")

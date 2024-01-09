@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7wo3d7vohqtc"]
+
+[ext_resource type="Script" path="res://Game/game.gd" id="1_d54o3"]
+[ext_resource type="Texture2D" uid="uid://bvg5wbu7b5kb7" path="res://art/grass/grass_texture.png" id="1_n2vpe"]
+[ext_resource type="PackedScene" uid="uid://c77jrmva115i6" path="res://Player/player.tscn" id="3_3vpm7"]
+[ext_resource type="PackedScene" uid="uid://dmr0fcamx7t56" path="res://joystick/virtual_joystick.tscn" id="4_3mstw"]
+[ext_resource type="PackedScene" uid="uid://cilsh7hkkpul5" path="res://Mobs/Venus/venus.tscn" id="5_05dkl"]
+
+[node name="Game" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d54o3")
+
+[node name="Grass2" type="TextureRect" parent="."]
+texture_repeat = 2
+layout_mode = 0
+offset_left = -4476.0
+offset_top = -3887.0
+offset_right = 5524.0
+offset_bottom = 6113.0
+texture = ExtResource("1_n2vpe")
+stretch_mode = 1
+
+[node name="Player" parent="." node_paths=PackedStringArray("joystick_left", "joystick_right") instance=ExtResource("3_3vpm7")]
+position = Vector2(382, 566)
+rotation_offset = -90
+joystick_left = NodePath("../UI/Virtual Joystick")
+joystick_right = NodePath("../UI/Virtual Joystick")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position = Vector2(-26, 81)
+zoom = Vector2(0.5, 0.5)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+drag_left_margin = 0.1
+drag_top_margin = 0.1
+drag_right_margin = 0.1
+drag_bottom_margin = 0.1
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Virtual Joystick" parent="UI" instance=ExtResource("4_3mstw")]
+offset_left = 220.0
+offset_top = -304.0
+offset_right = 520.0
+offset_bottom = -4.0
+joystick_mode = 1
+use_input_actions = false
+
+[node name="Venus" parent="." node_paths=PackedStringArray("target") instance=ExtResource("5_05dkl")]
+position = Vector2(-488, 618)
+target = NodePath("../Player")
+
+[connection signal="_on_Enemy_body_entered" from="Player" to="Venus" method="_on_player__on_enemy_body_entered"]
+[connection signal="hit_player" from="Venus" to="Player" method="_on_venus_hit_player"]
