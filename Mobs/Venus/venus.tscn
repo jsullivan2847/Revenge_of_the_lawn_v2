@@ -3,18 +3,22 @@
 [ext_resource type="Script" path="res://Mobs/Venus/venus.gd" id="1_7ycxt"]
 [ext_resource type="Texture2D" uid="uid://dkyebh8tnfrpc" path="res://art/venus/venus_v2.png" id="1_uidtn"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmif8"]
-size = Vector2(97, 284)
+[sub_resource type="CircleShape2D" id="CircleShape2D_s3h6w"]
 
 [node name="Venus" type="CharacterBody2D"]
 position = Vector2(410, 618)
+scale = Vector2(0.8, 0.8)
+collision_layer = 2
 script = ExtResource("1_7ycxt")
+health = 5
 damage = 5
 speed = 100
 
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, 2)
+rotation = -3.14159
+scale = Vector2(-6.82, -6.82)
+shape = SubResource("CircleShape2D_s3h6w")
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_uidtn")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-9.5, 2)
-shape = SubResource("RectangleShape2D_kmif8")

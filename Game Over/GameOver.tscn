@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ct4ff5g6q8sky"]
+[gd_scene load_steps=5 format=3 uid="uid://ct4ff5g6q8sky"]
 
 [ext_resource type="LabelSettings" uid="uid://daudlhrhvensa" path="res://art/fonts/game_over_text.tres" id="1_8dcog"]
 [ext_resource type="Script" path="res://Game Over/GameOver.gd" id="1_a4syv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tk4qt"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_ec4ki"]
 font_size = 64
@@ -43,6 +45,12 @@ theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 0
 theme_override_constants/margin_bottom = 300
 
+[node name="TouchScreenButton" type="TouchScreenButton" parent="MarginContainer"]
+z_index = 2
+position = Vector2(352, 946)
+scale = Vector2(28.2027, 7.94946)
+shape = SubResource("RectangleShape2D_tk4qt")
+
 [node name="Label" type="Label" parent="MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 0
@@ -56,3 +64,5 @@ size_flags_vertical = 8
 text = "Tap to try again"
 label_settings = SubResource("LabelSettings_ec4ki")
 horizontal_alignment = 1
+
+[connection signal="pressed" from="MarginContainer/TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

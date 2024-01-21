@@ -10,3 +10,7 @@ func _ready():
 func _process(delta):
 	if Input.is_action_just_pressed("space"):
 		GameManager.load_game_scene()
+
+
+func _on_touch_screen_button_pressed():
+	GameManager.load_game_scene()

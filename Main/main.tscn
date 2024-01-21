@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://cfx5ey3rapdxq"]
+[gd_scene load_steps=5 format=3 uid="uid://cfx5ey3rapdxq"]
 
 [ext_resource type="Script" path="res://Main/main.gd" id="1_3m025"]
 [ext_resource type="Texture2D" uid="uid://dnc1stybfig0p" path="res://art/grass/uncut.png" id="1_45chr"]
@@ -7,6 +7,8 @@
 font_size = 64
 outline_size = 20
 outline_color = Color(0, 0.380392, 0.109804, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7qfc8"]
 
 [node name="Main" type="Control"]
 layout_mode = 3
@@ -55,3 +57,10 @@ size_flags_vertical = 8
 text = "Tap to Start"
 label_settings = SubResource("LabelSettings_qgv4c")
 horizontal_alignment = 1
+
+[node name="TouchScreenButton" type="TouchScreenButton" parent="."]
+position = Vector2(338, 944)
+scale = Vector2(25.4, 8.32)
+shape = SubResource("RectangleShape2D_7qfc8")
+
+[connection signal="pressed" from="TouchScreenButton" to="." method="_on_touch_screen_button_pressed"]

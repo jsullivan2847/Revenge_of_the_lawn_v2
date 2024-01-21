@@ -24,6 +24,7 @@ GameManager="*res://Singletons/GameManager.gd"
 window/size/viewport_width=720
 window/size/viewport_height=1280
 window/stretch/mode="viewport"
+window/handheld/orientation=1
 
 [input]
 
@@ -36,6 +37,11 @@ space={
 [input_devices]
 
 pointing/emulate_touch_from_mouse=true
+
+[layer_names]
+
+2d_physics/layer_1="Player"
+2d_physics/layer_2="Enemies"
 
 [rendering]
 

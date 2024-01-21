@@ -1,20 +1,24 @@
 extends Node2D
 
 @export var speed = 200
-@export var health = 50
+@export var health = 20
 @export var interpolation_factor : float = 0.1
 @export var rotation_offset : int = 0
 @export var joystick_left : VirtualJoystick
 @export var joystick_right : VirtualJoystick
 
-signal _on_Enemy_body_entered(body: Node)
+@onready var weapon = $Weapon
+var enemies_touching : Array = []
 var move_vector := Vector2.ZERO
+signal display_health
 
 
 func _ready():
 	pass
 	
 func _process(delta: float) -> void:
+	if get_modulate() != Color(1,1,1,1):
+		set_modulate(Color(1,1,1,1))
 	process_joystick(delta)
 
 		
@@ -29,4 +33,42 @@ func process_joystick(delta):
 		if rotation_degrees > 10 and new_rotation < 0:
 			rotation_degrees = new_rotation
 		rotation_degrees = lerp(rotation_degrees, new_rotation, interpolation_factor)
+
+
+func _on_hit_box_body_entered(body):
+	#tracks how many enemies currently touching
+	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['type'] == body.type)
+	if enemy_already_touching:
+		var enemy_index = enemies_touching.find(enemy_already_touching[0])
+		enemies_touching[enemy_index].amount += 1
+	else: 
+		enemies_touching.append({"type":body.type,"damage":body.damage,"amount":1})
+
+func _on_hit_box_body_exited(body):
+	#tracks how many enemies currently touching
+	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['type'] == body.type)
+	if enemy_already_touching:
+		var enemy_index = enemies_touching.find(enemy_already_touching[0])
+		enemies_touching[enemy_index].amount -= 1
+	var enemies_at_zero = enemies_touching.filter(func(enemy): return enemy['amount'] == 0)
+	if(enemies_at_zero):
+		for enemy in enemies_at_zero:
+			enemies_touching.erase(enemy)
+	
+	
+func process_damage(enemies):
+	#process player damage per amount of enemies touching
+	var total_damage = 0
+	if enemies:
+		for enemy in enemies:
+			total_damage += enemy.damage * enemy.amount
+	health -= total_damage
+	if health <= 0:
+		GameManager.on_game_over()
+	if(enemies_touching):
+		set_modulate(Color(255,76,48))
+	display_health.emit()
+
+func _on_damage_frequency_timeout():
+	process_damage(enemies_touching)
 	

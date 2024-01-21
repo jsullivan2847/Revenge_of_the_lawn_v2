@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://c77jrmva115i6"]
+[gd_scene load_steps=8 format=3 uid="uid://c77jrmva115i6"]
 
 [ext_resource type="Script" path="res://Player/player.gd" id="1_4f3he"]
 [ext_resource type="Texture2D" uid="uid://d4kglb6gg4wns" path="res://art/player/lawnmower_down.png" id="1_8aqy4"]
+[ext_resource type="PackedScene" uid="uid://b00lfw7anbd8u" path="res://Weapons/Lawnmower/new_lawnmower.tscn" id="3_vcbmp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wma8x"]
 size = Vector2(18.4071, 20.6955)
@@ -17,8 +18,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Player" type="CharacterBody2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6qr3d"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_i8ywh"]
+radius = 1198.17
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 position = Vector2(351, 1010)
+scale = Vector2(0.5, 0.5)
+collision_mask = 3
 script = ExtResource("1_4f3he")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -29,3 +37,31 @@ shape = SubResource("RectangleShape2D_wma8x")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-3, 3)
 sprite_frames = SubResource("SpriteFrames_pasa4")
+
+[node name="HitBox" type="Area2D" parent="."]
+position = Vector2(0, -96)
+scale = Vector2(1, 0.36)
+collision_mask = 2
+
+[node name="HitBoxShape" type="CollisionShape2D" parent="HitBox"]
+position = Vector2(-4, 5)
+scale = Vector2(4.46712, 16.3471)
+shape = SubResource("RectangleShape2D_6qr3d")
+debug_color = Color(0.909804, 0.262745, 0.360784, 0.419608)
+
+[node name="Damage_Frequency" type="Timer" parent="."]
+autostart = true
+
+[node name="New_Lawnmower" parent="." instance=ExtResource("3_vcbmp")]
+position = Vector2(-3.99998, 132)
+
+[node name="SpawnArea" type="Area2D" parent="."]
+
+[node name="Circle" type="CollisionShape2D" parent="SpawnArea"]
+visible = false
+scale = Vector2(5.00452, 5.00452)
+shape = SubResource("CircleShape2D_i8ywh")
+
+[connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
+[connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
+[connection signal="timeout" from="Damage_Frequency" to="." method="_on_damage_frequency_timeout"]
