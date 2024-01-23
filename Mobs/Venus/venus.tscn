@@ -1,24 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cilsh7hkkpul5"]
+[gd_scene load_steps=5 format=3 uid="uid://ddc427h58c3bq"]
 
 [ext_resource type="Script" path="res://Mobs/Venus/venus.gd" id="1_7ycxt"]
+[ext_resource type="PackedScene" uid="uid://v7a3and74bre" path="res://Mobs/base_mob.tscn" id="1_ft0h0"]
 [ext_resource type="Texture2D" uid="uid://dkyebh8tnfrpc" path="res://art/venus/venus_v2.png" id="1_uidtn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_s3h6w"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_yhwgt"]
 
-[node name="Venus" type="CharacterBody2D"]
-position = Vector2(410, 618)
+[node name="Venus" instance=ExtResource("1_ft0h0")]
+position = Vector2(343, 404)
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
 script = ExtResource("1_7ycxt")
-health = 5
+health = 20
 damage = 5
 speed = 100
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-9.5, 2)
-rotation = -3.14159
-scale = Vector2(-6.82, -6.82)
-shape = SubResource("CircleShape2D_s3h6w")
+[node name="PhysicsCollider" parent="." index="0"]
+shape = SubResource("CircleShape2D_yhwgt")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" parent="." index="1"]
 texture = ExtResource("1_uidtn")

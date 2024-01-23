@@ -3,7 +3,10 @@ class_name Mob extends CharacterBody2D
 @export var health : int = 0
 @export var damage : int = 0
 @export var speed : int = 0
+@export var flash_duration : float
+@onready var flash_timer = $FlashTimer
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var mob_hurt_shader = preload("res://Mobs/mob_hurt_material.tres")
 var target
 
 func _ready():
@@ -46,3 +49,11 @@ func is_player_down (direction) -> bool:
 func _process(delta):
 	if health <= 0:
 		queue_free()
+		
+func process_damage(damage_amount):
+	health -= damage
+	sprite.material = mob_hurt_shader
+	flash_timer.start(flash_duration)
+	
+func _on_flash_timer_timeout():
+	sprite.material = null

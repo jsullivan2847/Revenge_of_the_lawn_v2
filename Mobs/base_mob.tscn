@@ -3,7 +3,9 @@
 [ext_resource type="Script" path="res://Mobs/base_mob.gd" id="1_00j5s"]
 
 [node name="BaseMob" type="CharacterBody2D"]
+z_index = 2
 script = ExtResource("1_00j5s")
+flash_duration = 0.1
 
 [node name="PhysicsCollider" type="CollisionShape2D" parent="."]
 position = Vector2(-9.5, 2)
@@ -11,3 +13,7 @@ rotation = -3.14159
 scale = Vector2(-6.82, -6.82)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="FlashTimer" type="Timer" parent="."]
+
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

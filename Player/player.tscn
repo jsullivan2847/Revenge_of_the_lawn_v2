@@ -28,6 +28,7 @@ position = Vector2(351, 1010)
 scale = Vector2(0.5, 0.5)
 collision_mask = 3
 script = ExtResource("1_4f3he")
+flash_duration = 0.1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-3.60001, 5.29999)
@@ -62,6 +63,9 @@ visible = false
 scale = Vector2(5.00452, 5.00452)
 shape = SubResource("CircleShape2D_i8ywh")
 
+[node name="FlashTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="HitBox" to="." method="_on_hit_box_body_entered"]
 [connection signal="body_exited" from="HitBox" to="." method="_on_hit_box_body_exited"]
 [connection signal="timeout" from="Damage_Frequency" to="." method="_on_damage_frequency_timeout"]
+[connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

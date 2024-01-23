@@ -1,0 +1,6 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://cudqj58vtkb0f"]
+
+[ext_resource type="Shader" path="res://Mobs/mob_hurt.gdshader" id="1_l5hcn"]
+
+[resource]
+shader = ExtResource("1_l5hcn")

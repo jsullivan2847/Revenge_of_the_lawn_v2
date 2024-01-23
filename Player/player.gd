@@ -6,8 +6,12 @@ extends Node2D
 @export var rotation_offset : int = 0
 @export var joystick_left : VirtualJoystick
 @export var joystick_right : VirtualJoystick
+@export var flash_duration : float
 
-@onready var weapon = $Weapon
+@onready var sprite = $AnimatedSprite2D
+@onready var flash_timer = $FlashTimer
+@onready var mob_hurt_shader = preload("res://Mobs/mob_hurt_material.tres")
+
 var enemies_touching : Array = []
 var move_vector := Vector2.ZERO
 signal display_health
@@ -17,11 +21,8 @@ func _ready():
 	pass
 	
 func _process(delta: float) -> void:
-	if get_modulate() != Color(1,1,1,1):
-		set_modulate(Color(1,1,1,1))
 	process_joystick(delta)
-
-		
+	
 func process_joystick(delta):
 	if joystick_left and joystick_left.is_pressed:
 		position += joystick_left.output * speed * delta
@@ -60,15 +61,19 @@ func process_damage(enemies):
 	#process player damage per amount of enemies touching
 	var total_damage = 0
 	if enemies:
+		sprite.material = mob_hurt_shader
+		flash_timer.start(flash_duration)
 		for enemy in enemies:
 			total_damage += enemy.damage * enemy.amount
 	health -= total_damage
 	if health <= 0:
 		GameManager.on_game_over()
-	if(enemies_touching):
-		set_modulate(Color(255,76,48))
 	display_health.emit()
 
 func _on_damage_frequency_timeout():
 	process_damage(enemies_touching)
 	
+
+
+func _on_flash_timer_timeout():
+	sprite.material = null

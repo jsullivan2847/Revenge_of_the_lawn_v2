@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://do4hpbu120wj4"]
 
-[ext_resource type="Script" path="res://Mobs/Spawner/Spawner.gd" id="1_yrfxk"]
-[ext_resource type="PackedScene" uid="uid://cilsh7hkkpul5" path="res://Mobs/Venus/venus.tscn" id="2_ewy14"]
+[ext_resource type="Script" path="res://Mobs/Spawner/Spawner.gd" id="1_feoif"]
+[ext_resource type="PackedScene" uid="uid://ddc427h58c3bq" path="res://Mobs/Venus/venus.tscn" id="2_2lkv8"]
 
 [node name="Spawner" type="Node2D"]
-script = ExtResource("1_yrfxk")
-mob = ExtResource("2_ewy14")
+script = ExtResource("1_feoif")
+mob = ExtResource("2_2lkv8")
 frequency = 1.0
 
 [node name="SpawnFrequency" type="Timer" parent="."]
