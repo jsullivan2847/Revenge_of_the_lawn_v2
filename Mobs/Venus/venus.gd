@@ -1,9 +1,7 @@
 extends Mob
 
-const type = "Venus"
-
 func _ready():
-	pass
+	super._ready()
 
 func _physics_process(_delta):
 	super._physics_process(_delta)

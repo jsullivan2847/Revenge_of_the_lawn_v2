@@ -8,19 +8,19 @@ var spawnArea = null
 var spawnShape = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	#process_mode = 4
 	spawnShape = player.get_node('SpawnArea').get_node('Circle')
 	spawnArea = spawnShape.get_shape().radius
 	timer.wait_time = frequency
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _on_spawn_frequency_timeout():
 	var new_mob = mob.instantiate()
 	add_child(new_mob)
 	new_mob.position = gen_random_pos()
-	#print('spawned at ',new_mob.position)
 
 
 func gen_random_pos():
@@ -31,6 +31,8 @@ func gen_random_pos():
 	
 		return Vector2(x, y)
 	return
+	
+
 	
 	
 

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://clnstrxfqx5gh"]
+
+[ext_resource type="Script" path="res://UI/Mob_Overlay/mob_overlay.gd" id="1_sjl14"]
+
+[node name="Mob_Overlay" type="Node2D"]
+script = ExtResource("1_sjl14")
+
+[node name="Panel" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5.76172, 5.76172)
+color = Color(1, 1, 1, 0)
+
+[node name="Type" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = -9.19864
+offset_top = -21.3478
+offset_right = 30.8014
+offset_bottom = 1.65221
+scale = Vector2(0.435845, 0.435845)
+text = "Test"

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b00lfw7anbd8u"]
+[gd_scene load_steps=11 format=3 uid="uid://b00lfw7anbd8u"]
 
 [ext_resource type="PackedScene" uid="uid://curk8fuy41tv8" path="res://Weapons/base_weapon.tscn" id="1_0v3d7"]
 [ext_resource type="Script" path="res://Weapons/Lawnmower/new_lawnmower.gd" id="2_kp1ad"]
@@ -53,21 +53,68 @@ animations = [{
 "speed": 25.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_jxxr1"]
+radius = 4.0
+
 [node name="New_Lawnmower" instance=ExtResource("1_0v3d7")]
 position = Vector2(191, 179)
 scale = Vector2(3.5, 3.5)
 script = ExtResource("2_kp1ad")
 impact_damage = 3.0
 compound_damage = 1.0
-frequency = 1.0
+frequency = 0.2
 attack_animation = "blast"
-
-[node name="Timer" parent="." index="1"]
-wait_time = 2.0
-autostart = false
+impact_sound = "LAWNMOWER_IMPACT"
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 position = Vector2(0, 2)
 scale = Vector2(1.81, 1.9)
 sprite_frames = SubResource("SpriteFrames_570eb")
 animation = &"blast"
+
+[node name="TileCollider" parent="." index="3"]
+position = Vector2(-9.71429, -8.28571)
+scale = Vector2(0.603617, 0.603617)
+
+[node name="CollisionShape2D" parent="TileCollider" index="0"]
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_jxxr1")
+
+[node name="TileCollider2" type="Area2D" parent="." index="4"]
+position = Vector2(10.8571, -8)
+scale = Vector2(0.603617, 0.603617)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileCollider2" index="0"]
+shape = SubResource("CircleShape2D_jxxr1")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
+
+[node name="TileCollider3" type="Area2D" parent="." index="5"]
+position = Vector2(-8.57143, 10)
+scale = Vector2(0.603617, 0.603617)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileCollider3" index="0"]
+shape = SubResource("CircleShape2D_jxxr1")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
+
+[node name="TileCollider4" type="Area2D" parent="." index="6"]
+position = Vector2(8.85714, 10.2857)
+scale = Vector2(0.603617, 0.603617)
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileCollider4" index="0"]
+shape = SubResource("CircleShape2D_jxxr1")
+debug_color = Color(0.996078, 0, 0.203922, 0.419608)
+
+[node name="Start" type="AudioStreamPlayer2D" parent="." index="8"]
+
+[node name="Loop" type="AudioStreamPlayer2D" parent="." index="9"]
+volume_db = 4.709
+
+[connection signal="body_entered" from="TileCollider2" to="." method="_on_tile_collider_2_body_entered"]
+[connection signal="body_exited" from="TileCollider2" to="." method="_on_tile_collider_body_exited"]
+[connection signal="body_entered" from="TileCollider3" to="." method="_on_tile_collider_3_body_entered"]
+[connection signal="body_exited" from="TileCollider3" to="." method="_on_tile_collider_body_exited"]
+[connection signal="body_entered" from="TileCollider4" to="." method="_on_tile_collider_4_body_entered"]
+[connection signal="body_exited" from="TileCollider4" to="." method="_on_tile_collider_body_exited"]

@@ -1,7 +1,14 @@
-extends Node2D
+extends CharacterBody2D
 
-@export var speed = 200
-@export var health = 20
+@export var base_speed = 300
+var speed
+@export var fuel = 500
+@export var prev_fuel = fuel
+@export var max_fuel = 500
+@export var health = 40
+var prev_health = health
+@export var max_health = 40
+@export var min_health = 0
 @export var interpolation_factor : float = 0.1
 @export var rotation_offset : int = 0
 @export var joystick_left : VirtualJoystick
@@ -10,23 +17,37 @@ extends Node2D
 
 @onready var sprite = $AnimatedSprite2D
 @onready var flash_timer = $FlashTimer
+@onready var weapon = $New_Lawnmower
+@onready var spawner = $"../Spawner"
 @onready var mob_hurt_shader = preload("res://Mobs/mob_hurt_material.tres")
 
 var enemies_touching : Array = []
 var move_vector := Vector2.ZERO
 signal display_health
+signal display_fuel
 
 
 func _ready():
-	pass
+	speed = base_speed
+	SignalManager.connect("mob_death",on_mob_death)
 	
-func _process(delta: float) -> void:
+func _physics_process(delta) -> void:
+	#print("speed: ",speed)
 	process_joystick(delta)
+	move_and_slide()
+
+func _process(_delta):
+	check_health(health)
+	check_fuel(fuel)
 	
 func process_joystick(delta):
+	velocity = Vector2(0,0)
+	#Movement
 	if joystick_left and joystick_left.is_pressed:
+		if(fuel > 0):
+			fuel -= 0.5
 		position += joystick_left.output * speed * delta
-		
+	#Rotation
 	if joystick_right and joystick_right.is_pressed:
 		var new_rotation = (rad_to_deg(joystick_right.output.angle()) + rotation_offset)
 		if rotation_degrees < -90 and new_rotation > 0:
@@ -38,16 +59,16 @@ func process_joystick(delta):
 
 func _on_hit_box_body_entered(body):
 	#tracks how many enemies currently touching
-	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['type'] == body.type)
+	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['this_mob'] == body.this_mob)
 	if enemy_already_touching:
 		var enemy_index = enemies_touching.find(enemy_already_touching[0])
 		enemies_touching[enemy_index].amount += 1
 	else: 
-		enemies_touching.append({"type":body.type,"damage":body.damage,"amount":1})
+		enemies_touching.append({"this_mob":body.this_mob,"damage":body.damage,"amount":1})
 
 func _on_hit_box_body_exited(body):
 	#tracks how many enemies currently touching
-	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['type'] == body.type)
+	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['this_mob'] == body.this_mob)
 	if enemy_already_touching:
 		var enemy_index = enemies_touching.find(enemy_already_touching[0])
 		enemies_touching[enemy_index].amount -= 1
@@ -68,12 +89,30 @@ func process_damage(enemies):
 	health -= total_damage
 	if health <= 0:
 		GameManager.on_game_over()
-	display_health.emit()
 
 func _on_damage_frequency_timeout():
 	process_damage(enemies_touching)
 	
-
-
 func _on_flash_timer_timeout():
 	sprite.material = null
+func _on_speed_boost_timer_timeout():
+	speed = base_speed
+func on_mob_death(mob_type,mob_position):
+	speed += 300
+	$SpeedBoostTimer.start(0.1)
+	
+func check_health(current_health):
+	if(current_health != prev_health):
+		display_health.emit()
+	prev_health = current_health
+
+func check_fuel(current_fuel):
+	if(fuel <= 0):
+		speed = base_speed * 0.25
+	else:
+		speed = base_speed
+	if(current_fuel != prev_fuel):
+		display_fuel.emit()
+	prev_fuel = current_fuel
+
+

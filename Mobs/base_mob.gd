@@ -1,5 +1,8 @@
 class_name Mob extends CharacterBody2D
 
+enum MOB_TYPE {BASE_MOB,VENUS}
+var mob_dead = false
+@export var this_mob = MOB_TYPE.BASE_MOB
 @export var health : int = 0
 @export var damage : int = 0
 @export var speed : int = 0
@@ -7,29 +10,44 @@ class_name Mob extends CharacterBody2D
 @onready var flash_timer = $FlashTimer
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var mob_hurt_shader = preload("res://Mobs/mob_hurt_material.tres")
+
+@onready var overlay = $Mob_Overlay
+
+
+var being_pushed = false
 var target
 
 func _ready():
-	target = get_parent().get_node("Player")
-
+	this_mob = MOB_TYPE.find_key(this_mob)
+	overlay.get_node("Panel/Type").text = this_mob
+	
 func _physics_process(_delta):
-	if get_modulate() != Color(1,1,1,1):
-		set_modulate(Color(1,1,1,1))
-	target = get_node("/root/Game/Player")
+	target = get_parent().player
+	process_movement()
+	
+func _process(_delta):
+	if mob_dead:
+		queue_free()
+	if (health <= 0) and (mob_dead == false):
+		mob_dead = true
+		SignalManager.mob_death.emit(this_mob,position)
+		
+func process_movement():
 	if target:
 		var direction = (target.global_position - global_position).normalized()
+		if being_pushed:
+			velocity = (direction * -1) * 130
+		else:
+			velocity = direction * speed
 		flip_sprite(direction)
-		move_towards_player(direction)
+		move_and_slide()
 	else: 
-		print('cant find')
-	
+		print("no player set as target")
+		
+		
 func flip_sprite(direction):
 	sprite.set_flip_h(is_player_left(direction))
 	sprite.set_flip_v(not is_player_down(direction))
-
-func move_towards_player(direction) -> void:
-	velocity = direction * speed
-	move_and_slide()
 
 
 func is_player_left (direction) -> bool:
@@ -46,11 +64,8 @@ func is_player_down (direction) -> bool:
 		else: return false
 	else: return false
 
-func _process(delta):
-	if health <= 0:
-		queue_free()
-		
-func process_damage(damage_amount):
+	
+func process_damage(_damage_amount):
 	health -= damage
 	sprite.material = mob_hurt_shader
 	flash_timer.start(flash_duration)

@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://ro7ej4gxy6va"]
+
+[ext_resource type="Script" path="res://UI/hud.gd" id="1_5yb24"]
+[ext_resource type="LabelSettings" uid="uid://ceuqtp4jq55xd" path="res://art/fonts/hud_v1.tres" id="2_yovja"]
+[ext_resource type="StyleBox" uid="uid://dld145adqpdfk" path="res://UI/Game Overlay/health_bar_background.tres" id="3_lh1x4"]
+[ext_resource type="Theme" uid="uid://b1j0phh6bjdem" path="res://UI/Game Overlay/health_bar_theme.tres" id="3_vxvij"]
+[ext_resource type="StyleBox" uid="uid://cjh64debkoxsp" path="res://UI/Game Overlay/fuel_bar_background.tres" id="5_sf7mr"]
+[ext_resource type="StyleBox" uid="uid://dxnillxor86wg" path="res://UI/Game Overlay/fuel_bar_fill.tres" id="6_0wnri"]
+[ext_resource type="LabelSettings" uid="uid://ckedij6yirgkq" path="res://art/fonts/message_font.tres" id="7_rcfe1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymp1r"]
+bg_color = Color(0.890196, 0.254902, 0.270588, 1)
+
+[node name="Hud" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5yb24")
+
+[node name="Score" type="Label" parent="."]
+layout_mode = 0
+offset_left = 519.0
+offset_top = 24.0
+offset_right = 698.0
+offset_bottom = 91.0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Score: 0"
+label_settings = ExtResource("2_yovja")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+self_modulate = Color(0.956863, 1, 1, 1)
+z_index = 6
+layout_mode = 0
+offset_left = 19.0
+offset_top = 23.0
+offset_right = 341.0
+offset_bottom = 57.0
+theme = ExtResource("3_vxvij")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = ExtResource("3_lh1x4")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ymp1r")
+max_value = 40.0
+step = 1.0
+value = 40.0
+rounded = true
+show_percentage = false
+
+[node name="FuelBar" type="ProgressBar" parent="."]
+self_modulate = Color(0.956863, 1, 1, 1)
+z_index = 6
+layout_mode = 0
+offset_left = 19.0
+offset_top = 70.0
+offset_right = 341.0
+offset_bottom = 104.0
+theme = ExtResource("3_vxvij")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_styles/background = ExtResource("5_sf7mr")
+theme_override_styles/fill = ExtResource("6_0wnri")
+max_value = 500.0
+step = 1.0
+value = 500.0
+rounded = true
+show_percentage = false
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -680.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "test"
+label_settings = ExtResource("7_rcfe1")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="message_fadeout" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="timeout" from="message_fadeout" to="." method="_on_message_fadeout_timeout"]

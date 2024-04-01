@@ -4,19 +4,22 @@
 [ext_resource type="PackedScene" uid="uid://v7a3and74bre" path="res://Mobs/base_mob.tscn" id="1_ft0h0"]
 [ext_resource type="Texture2D" uid="uid://dkyebh8tnfrpc" path="res://art/venus/venus_v2.png" id="1_uidtn"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_yhwgt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jprbu"]
+size = Vector2(14.2192, 15.1173)
 
 [node name="Venus" instance=ExtResource("1_ft0h0")]
 position = Vector2(343, 404)
 scale = Vector2(0.8, 0.8)
 collision_layer = 2
 script = ExtResource("1_7ycxt")
+this_mob = 1
 health = 20
 damage = 5
 speed = 100
 
-[node name="PhysicsCollider" parent="." index="0"]
-shape = SubResource("CircleShape2D_yhwgt")
-
-[node name="Sprite2D" parent="." index="1"]
+[node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("1_uidtn")
+
+[node name="PhysicsCollider" parent="." index="2"]
+position = Vector2(-11.25, -1.25)
+shape = SubResource("RectangleShape2D_jprbu")

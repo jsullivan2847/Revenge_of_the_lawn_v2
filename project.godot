@@ -18,6 +18,9 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://Singletons/GameManager.gd"
+SignalManager="*res://Singletons/SignalManager.gd"
+AudioManager="*res://Singletons/AudioManager.gd"
+EventManager="*res://Singletons/EventManager.gd"
 
 [display]
 

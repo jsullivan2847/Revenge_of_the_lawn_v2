@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b0eb1wj3ab2rp"
+path="res://.godot/imported/alt start.wav-5c47c68cada738e7a61c3e485023bcdf.sample"
+
+[deps]
+
+source_file="res://audio/lawnmower/alt start.wav"
+dest_files=["res://.godot/imported/alt start.wav-5c47c68cada738e7a61c3e485023bcdf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

@@ -1,19 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://v7a3and74bre"]
+[gd_scene load_steps=3 format=3 uid="uid://v7a3and74bre"]
 
 [ext_resource type="Script" path="res://Mobs/base_mob.gd" id="1_00j5s"]
+[ext_resource type="PackedScene" uid="uid://clnstrxfqx5gh" path="res://UI/Mob_Overlay/mob_overlay.tscn" id="2_11uus"]
 
-[node name="BaseMob" type="CharacterBody2D"]
+[node name="BaseMob" type="CharacterBody2D" groups=["Mob"]]
 z_index = 2
 script = ExtResource("1_00j5s")
 flash_duration = 0.1
 
-[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
-position = Vector2(-9.5, 2)
-rotation = -3.14159
-scale = Vector2(-6.82, -6.82)
-
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
 [node name="FlashTimer" type="Timer" parent="."]
+
+[node name="PhysicsCollider" type="CollisionShape2D" parent="."]
+position = Vector2(-9.5, 2)
+scale = Vector2(6.82, 6.82)
+
+[node name="Mob_Overlay" parent="." instance=ExtResource("2_11uus")]
 
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

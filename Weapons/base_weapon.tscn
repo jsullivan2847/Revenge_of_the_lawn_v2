@@ -16,21 +16,24 @@ collision_mask = 6
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_44txg")
 
-[node name="Timer" type="Timer" parent="."]
+[node name="dmg_freq_timer" type="Timer" parent="."]
 wait_time = 0.5
-autostart = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 
 [node name="TileCollider" type="Area2D" parent="."]
 scale = Vector2(0.2, 0.2)
-collision_mask = 4
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileCollider"]
 scale = Vector2(0.3, 0.3)
 shape = SubResource("RectangleShape2D_e4yjf")
 debug_color = Color(0.996078, 0, 0.203922, 0.419608)
 
+[node name="Weapon Sound" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
-[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="timeout" from="dmg_freq_timer" to="." method="_on_timer_timeout"]
 [connection signal="body_entered" from="TileCollider" to="." method="_on_tile_collider_body_entered"]
+[connection signal="body_exited" from="TileCollider" to="." method="_on_tile_collider_body_exited"]
