@@ -29,7 +29,7 @@ signal display_fuel
 
 func _ready():
 	speed = base_speed
-	SignalManager.connect("mob_death",on_mob_death)
+	GameManager.connect("mob_death",on_mob_death)
 	
 func _physics_process(delta) -> void:
 	#print("speed: ",speed)

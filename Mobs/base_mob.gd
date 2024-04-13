@@ -30,7 +30,7 @@ func _process(_delta):
 		queue_free()
 	if (health <= 0) and (mob_dead == false):
 		mob_dead = true
-		SignalManager.mob_death.emit(this_mob,position)
+		GameManager.mob_death.emit(this_mob,position)
 		
 func process_movement():
 	if target:

@@ -1909,12 +1909,9 @@ layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Test"
 layer_4/tile_data = PackedInt32Array(-3145673, 0, 131072, 655381, 0, 65536)
 
-[node name="House" parent="TileMap" instance=ExtResource("3_lnwm1")]
-position = Vector2(808, 422.667)
+[node name="Basic_Lawn" parent="TileMap" instance=ExtResource("3_lnwm1")]
+position = Vector2(806.667, 452)
 layer_1/tile_data = PackedInt32Array(-1, 65536, 14, 65535, 65536, 14, -65536, 65536, 14, 0, 65536, 14)
-
-[node name="House2" parent="TileMap" instance=ExtResource("3_lnwm1")]
-position = Vector2(1374, 148.667)
 
 [node name="Player" parent="." node_paths=PackedStringArray("joystick_left", "joystick_right") instance=ExtResource("3_3vpm7")]
 z_index = 2
@@ -1949,6 +1946,7 @@ use_input_actions = false
 player = NodePath("../../Player")
 
 [node name="Upgrade_Menu" parent="UI" instance=ExtResource("7_w21r2")]
+process_mode = 2
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_5l5hd")]
 z_index = -1

@@ -8,8 +8,8 @@ func _ready():
 	set_fuel_bar()
 	player.connect('display_health',set_health_bar)
 	player.connect('display_fuel',set_fuel_bar)
-	SignalManager.connect("mob_death",on_mob_death)
-	SignalManager.connect("lawn_complete",set_message_one_shot)
+	GameManager.connect("mob_death",on_mob_death)
+	GameManager.connect("lawn_complete",set_message_one_shot)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

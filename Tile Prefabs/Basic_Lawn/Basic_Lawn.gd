@@ -13,5 +13,5 @@ func _ready():
 func _process(_delta):
 	cells_in_area = tilemap.get_used_cells(1).size() 
 	if cells_in_area == 0 and prev_cells_in_area != 0:
-		SignalManager.lawn_complete.emit("Lawn Complete!")
+		GameManager.lawn_complete.emit("Lawn Complete!")
 	prev_cells_in_area = cells_in_area

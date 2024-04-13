@@ -8,7 +8,7 @@ var spawnArea = null
 var spawnShape = null
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#process_mode = 4
+	process_mode = 4
 	spawnShape = player.get_node('SpawnArea').get_node('Circle')
 	spawnArea = spawnShape.get_shape().radius
 	timer.wait_time = frequency

@@ -7,8 +7,8 @@ var pickups = {
 }
 
 func _ready():
-	SignalManager.mob_death.connect(drop_pickup)
-	SignalManager.lawn_complete.connect(upgrade)
+	GameManager.mob_death.connect(drop_pickup)
+	#GameManager.lawn_complete.connect(upgrade)
 	
 func _process(_delta):
 	pass
@@ -28,7 +28,7 @@ func drop_pickup(mob_type,mob_position):
 		#var pickup = health_pickup.instantiate()
 		#Game.add_child(pickup)
 		#pickup.position = position
-func upgrade(text):
-	print(text)
-	GameManager.pause()
+#func upgrade(text):
+	#print(text)
+	#GameManager.pause()
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://dmqshi2bxfkw"]
+[gd_scene load_steps=10 format=3 uid="uid://dmqshi2bxfkw"]
 
 [ext_resource type="Script" path="res://UI/Upgrade Menu/upgrade_menu.gd" id="1_73btx"]
 [ext_resource type="StyleBox" uid="uid://dq3qxbdud5bs" path="res://UI/Upgrade Menu/menu_button.tres" id="1_y1gq2"]
 [ext_resource type="Texture2D" uid="uid://drlkrgtldm7v8" path="res://art/UI/menu_panel.png" id="2_w34vv"]
+[ext_resource type="Texture2D" uid="uid://cf7r1wb5v5ft7" path="res://art/icons/saw_blade.png" id="4_fbirp"]
+[ext_resource type="Texture2D" uid="uid://lfs715t7wcak" path="res://art/icons/fuel.webp" id="5_5qj2x"]
 
 [sub_resource type="Theme" id="Theme_jx4jo"]
 Button/styles/normal = ExtResource("1_y1gq2")
@@ -16,6 +18,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxTexture_ay4nm")
 [sub_resource type="ImageTexture" id="ImageTexture_3y02g"]
 
 [node name="Upgrade_Menu" type="Control"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,15 +50,50 @@ size_flags_vertical = 3
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
 theme = SubResource("Theme_46rew")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
 layout_mode = 2
+alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("4_fbirp")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("5_5qj2x")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
-text = "Unpause"
+size_flags_horizontal = 4
+text = "Confirm"
 icon = SubResource("ImageTexture_3y02g")
+
+[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.1
 
 [node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
