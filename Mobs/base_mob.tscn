@@ -17,5 +17,7 @@ position = Vector2(-9.5, 2)
 scale = Vector2(6.82, 6.82)
 
 [node name="Mob_Overlay" parent="." instance=ExtResource("2_11uus")]
+visible = false
+script = null
 
 [connection signal="timeout" from="FlashTimer" to="." method="_on_flash_timer_timeout"]

@@ -31,6 +31,10 @@ func _process(_delta):
 	if (health <= 0) and (mob_dead == false):
 		mob_dead = true
 		GameManager.mob_death.emit(this_mob,position)
+	if GameManager.devMode:
+		overlay.visible = true
+	else: 
+		overlay.visible = false
 		
 func process_movement():
 	if target:

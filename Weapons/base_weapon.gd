@@ -19,8 +19,6 @@ func _process(_delta):
 func _on_timer_timeout():
 	damage_enemies(compound_damage)
 
-
-
 func _on_area_2d_body_entered(body):
 	if body.is_in_group("Mob"):
 		body.being_pushed = true
@@ -41,7 +39,6 @@ func damage_enemies(current_damage):
 			$AnimatedSprite2D.play(attack_animation)
 			for enemy in enemies:
 				enemy.process_damage(current_damage)
-
 
 func _on_tile_collider_body_entered(body):
 	tile_collision_processing($TileCollider,body)

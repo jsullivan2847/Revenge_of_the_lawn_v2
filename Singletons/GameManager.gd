@@ -1,5 +1,6 @@
 extends Node
 
+var devMode = false
 var main_scene : PackedScene = preload("res://Main/main.tscn") 
 var game_scene : PackedScene = preload("res://Game/game.tscn")
 var game_over_scene : PackedScene = preload("res://Game Over/GameOver.tscn")
@@ -16,7 +17,9 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	pass
+	if(Input.is_action_just_pressed("space")):
+		devMode = !devMode
+		
 	
 func on_game_over():
 	get_tree().change_scene_to_packed(game_over_scene)
