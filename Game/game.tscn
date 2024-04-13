@@ -1966,7 +1966,6 @@ use_input_actions = false
 player = NodePath("../../Player")
 
 [node name="Upgrade_Menu" parent="UI" instance=ExtResource("7_w21r2")]
-process_mode = 2
 
 [node name="Spawner" parent="." node_paths=PackedStringArray("player") instance=ExtResource("7_5l5hd")]
 z_index = -1

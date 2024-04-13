@@ -11,5 +11,5 @@ func _ready():
 func _process(_delta):
 	material.set_shader_parameter("mask_center", player.global_position)
 	
-	print("mask center: ",material.get_shader_parameter("mask_center"))
-	print("mask radius: ",material.get_shader_parameter("mask_radius"))
+	#print("mask center: ",material.get_shader_parameter("mask_center"))
+	#print("mask radius: ",material.get_shader_parameter("mask_radius"))

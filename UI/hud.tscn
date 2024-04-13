@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://ro7ej4gxy6va"]
+[gd_scene load_steps=10 format=3 uid="uid://ro7ej4gxy6va"]
 
 [ext_resource type="Script" path="res://UI/hud.gd" id="1_5yb24"]
 [ext_resource type="LabelSettings" uid="uid://ceuqtp4jq55xd" path="res://art/fonts/hud_v1.tres" id="2_yovja"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://cjh64debkoxsp" path="res://UI/Game Overlay/fuel_bar_background.tres" id="5_sf7mr"]
 [ext_resource type="StyleBox" uid="uid://dxnillxor86wg" path="res://UI/Game Overlay/fuel_bar_fill.tres" id="6_0wnri"]
 [ext_resource type="LabelSettings" uid="uid://ckedij6yirgkq" path="res://art/fonts/message_font.tres" id="7_rcfe1"]
+[ext_resource type="Texture2D" uid="uid://cf7r1wb5v5ft7" path="res://art/icons/saw_blade.png" id="7_uudcc"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ymp1r"]
 bg_color = Color(0.890196, 0.254902, 0.270588, 1)
@@ -20,25 +21,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_5yb24")
 
-[node name="Score" type="Label" parent="."]
-layout_mode = 0
-offset_left = 519.0
-offset_top = 24.0
-offset_right = 698.0
-offset_bottom = 91.0
-size_flags_horizontal = 8
-size_flags_vertical = 0
-text = "Score: 0"
-label_settings = ExtResource("2_yovja")
+[node name="ScreenMargin" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -10.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 30
 
-[node name="HealthBar" type="ProgressBar" parent="."]
+[node name="ScreenVBox" type="VBoxContainer" parent="ScreenMargin"]
+layout_mode = 2
+
+[node name="TopHudHBox" type="HBoxContainer" parent="ScreenMargin/ScreenVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+theme_override_constants/separation = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenMargin/ScreenVBox/TopHudHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 9
+
+[node name="HealthBar" type="ProgressBar" parent="ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer"]
 self_modulate = Color(0.956863, 1, 1, 1)
 z_index = 6
-layout_mode = 0
-offset_left = 19.0
-offset_top = 23.0
-offset_right = 341.0
-offset_bottom = 57.0
+custom_minimum_size = Vector2(2.08165e-12, 23)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme = ExtResource("3_vxvij")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -50,14 +67,13 @@ value = 40.0
 rounded = true
 show_percentage = false
 
-[node name="FuelBar" type="ProgressBar" parent="."]
+[node name="FuelBar" type="ProgressBar" parent="ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer"]
 self_modulate = Color(0.956863, 1, 1, 1)
 z_index = 6
-layout_mode = 0
-offset_left = 19.0
-offset_top = 70.0
-offset_right = 341.0
-offset_bottom = 104.0
+custom_minimum_size = Vector2(2.08165e-12, 23)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 theme = ExtResource("3_vxvij")
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -69,23 +85,84 @@ value = 500.0
 rounded = true
 show_percentage = false
 
-[node name="Message" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -680.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScreenMargin/ScreenVBox/TopHudHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 9
+
+[node name="HealthValue" type="Label" parent="ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer2"]
+layout_mode = 2
+text = "40"
+
+[node name="FuelValue" type="Label" parent="ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer2"]
+layout_mode = 2
+text = "500"
+
+[node name="Control" type="Control" parent="ScreenMargin/ScreenVBox/TopHudHBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 0.35
+
+[node name="Score" type="Label" parent="ScreenMargin/ScreenVBox/TopHudHBox"]
+layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
+text = "Score: 0"
+label_settings = ExtResource("2_yovja")
+horizontal_alignment = 1
+
+[node name="StatsMargin" type="MarginContainer" parent="ScreenMargin/ScreenVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="ScreenMargin/ScreenVBox/StatsMargin"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2"]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_uudcc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ImpactDamageLabel" type="Label" parent="ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("7_uudcc")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label2" type="Label" parent="ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="ScreenMargin/ScreenVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.57
+
+[node name="EventMessage" type="Label" parent="ScreenMargin/ScreenVBox"]
+custom_minimum_size = Vector2(680, 67)
+layout_mode = 2
+size_flags_vertical = 2
+text = "Test Text"
 label_settings = ExtResource("7_rcfe1")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="message_fadeout" type="Timer" parent="."]
-wait_time = 2.0
-one_shot = true
-
-[connection signal="timeout" from="message_fadeout" to="." method="_on_message_fadeout_timeout"]
+[node name="Control2" type="Control" parent="ScreenMargin/ScreenVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 14.93

@@ -69,8 +69,10 @@ func is_player_down (direction) -> bool:
 	else: return false
 
 	
-func process_damage(_damage_amount):
-	health -= damage
+func process_damage(damage_amount):
+	#print_debug("damage_amount: ",damage_amount)
+	#print_debug("damage: ",damage)
+	health -= damage_amount
 	sprite.material = mob_hurt_shader
 	flash_timer.start(flash_duration)
 	

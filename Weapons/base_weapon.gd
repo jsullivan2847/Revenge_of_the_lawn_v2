@@ -44,7 +44,7 @@ func _on_tile_collider_body_entered(body):
 	tile_collision_processing($TileCollider,body)
 	
 func tile_collision_processing(collider,body):
-	print('hit: ',body)
+	#print('hit: ',body)
 	var tile_pos = body.local_to_map(body.to_local(collider.global_position))
 	#print("cell atlas coords: ",body.get_cell_atlas_coords(0,tile_pos,false))
 	body.erase_cell(1,tile_pos)
