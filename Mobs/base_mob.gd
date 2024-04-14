@@ -19,7 +19,9 @@ var target
 
 func _ready():
 	this_mob = MOB_TYPE.find_key(this_mob)
-	overlay.get_node("Panel/Type").text = this_mob
+	overlay.get_node("Panel/VBoxContainer/Type").text = this_mob
+	overlay.get_node("Panel/VBoxContainer/Health").text = str(health)
+	overlay.visible = true
 	
 func _physics_process(_delta):
 	target = get_parent().player
@@ -31,10 +33,11 @@ func _process(_delta):
 	if (health <= 0) and (mob_dead == false):
 		mob_dead = true
 		GameManager.mob_death.emit(this_mob,position)
-	if GameManager.devMode:
-		overlay.visible = true
-	else: 
-		overlay.visible = false
+		
+	#if GameManager.devMode:
+		#overlay.visible = true
+	#else: 
+		#overlay.visible = false
 		
 func process_movement():
 	if target:
@@ -70,10 +73,11 @@ func is_player_down (direction) -> bool:
 
 	
 func process_damage(damage_amount):
-	#print_debug("damage_amount: ",damage_amount)
+	print_debug("damage_amount: ",damage_amount)
 	#print_debug("damage: ",damage)
 	health -= damage_amount
 	sprite.material = mob_hurt_shader
+	overlay.get_node("Panel/VBoxContainer/Health").text = str(health)
 	flash_timer.start(flash_duration)
 	
 func _on_flash_timer_timeout():

@@ -1,15 +1,16 @@
 extends Control
 
 @export var player : CharacterBody2D
-@onready var score = $ScreenMargin/ScreenVBox/TopHudHBox/Score
+@onready var score = $ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer3/Score
 @onready var health_bar = $ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer/HealthBar
 @onready var fuel_bar = $ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer/FuelBar
 @onready var health_label = $ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer2/HealthValue
 @onready var fuel_label = $ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer2/FuelValue
 @onready var message = $ScreenMargin/ScreenVBox/EventMessage
 @onready var damage_label = $ScreenMargin/ScreenVBox/StatsMargin/HBoxContainer2/VBoxContainer/ImpactDamageLabel
-
+@onready var lawn_score = $ScreenMargin/ScreenVBox/TopHudHBox/VBoxContainer3/Lawns
 var mobs_killed = 0
+var lawns_mowed = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	if player:
@@ -18,13 +19,15 @@ func _ready():
 		set_damage_label()
 	GameManager.connect("mob_death",on_mob_death)
 	GameManager.connect("lawn_complete",set_message_one_shot)
+	GameManager.connect("lawn_complete",set_lawn_score)
+	set_message_one_shot("Mow Lawns to Win Upgrades!!!")
 
 func _process(_delta):
 	pass
 
 func on_mob_death(mob_type,mob_position):
 	mobs_killed += 1
-	score.text = "Score: " + str(mobs_killed)
+	score.text = "Kills: " + str(mobs_killed)
 	
 func set_health_bar():
 	health_bar.value = player.health
@@ -35,9 +38,11 @@ func set_fuel_bar():
 	fuel_label.text = str(int(player.fuel)) + " / " + str(int(player.max_fuel))
 	
 func set_damage_label():
-	print('damage: ',player.weapon.impact_damage)
 	damage_label.text = str(player.weapon.impact_damage)
-	print('damage: ',player.weapon.impact_damage)
+	
+func set_lawn_score(text):
+	lawns_mowed += 1
+	lawn_score.text = "Lawns: " + str(lawns_mowed)
 	
 func set_message_one_shot(text):
 	if(message):

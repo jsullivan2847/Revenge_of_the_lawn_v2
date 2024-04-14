@@ -32,10 +32,11 @@ func on_lawn_complete(message):
 func _on_confirm_button_button_down():
 	if upgrade_choice != null:
 		if upgrade_choice == 'fuel':
-			pass
+			player.max_fuel = player.max_fuel * 1.1
+			player.fuel = player.max_fuel
 		elif upgrade_choice == 'damage':
-			print_debug("damage: ",player.weapon.impact_damage)
 			player.weapon.impact_damage += 5
+			print("damage increased to ",player.weapon.impact_damage)
 			hud.set_damage_label()
 		elif upgrade_choice == 'health':
 			pass
@@ -53,11 +54,11 @@ func populate_upgrades():
 	upgrades[1] = (EventManager.get_weighted_upgrade())
 	while upgrades[1] == upgrades[0]:
 		upgrades[1] = EventManager.get_weighted_upgrade()
-	print(upgrades)
+	#print(upgrades)
 	for i in (upgrades.size()):
 		if upgrades[i] == 'fuel':
 			upgrade_containers[i].set_texture_normal(fuel_upgrade_icon)
-			upgrade_labels[i].text = "+5 Fuel Capacity"
+			upgrade_labels[i].text = "+5 Fuel Capacity (Fills Tank)"
 		elif upgrades[i] == 'damage':
 			upgrade_containers[i].set_texture_normal(damage_upgrade_icon)
 			upgrade_labels[i].text = "+1 Impact Damage"
@@ -65,9 +66,9 @@ func populate_upgrades():
 			pass
 
 func _on_upgrade_1_button_down():
-	print(upgrades[0],' clicked')
+	#print(upgrades[0],' clicked')
 	upgrade_choice = upgrades[0]
 
 func _on_upgrade_2_button_down():
-	print(upgrades[1],' clicked')
+	#print(upgrades[1],' clicked')
 	upgrade_choice = upgrades[1]

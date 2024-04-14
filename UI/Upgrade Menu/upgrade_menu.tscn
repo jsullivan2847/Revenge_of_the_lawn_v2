@@ -145,5 +145,5 @@ layout_mode = 2
 size_flags_vertical = 3
 
 [connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Upgrade1" to="." method="_on_upgrade_1_button_down"]
-[connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/Upgrade2" to="." method="_on_upgrade_1_button_down"]
+[connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/Upgrade2" to="." method="_on_upgrade_2_button_down"]
 [connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_button_down"]
