@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmqshi2bxfkw"]
+[gd_scene load_steps=9 format=3 uid="uid://dmqshi2bxfkw"]
 
 [ext_resource type="Script" path="res://UI/Upgrade Menu/upgrade_menu.gd" id="1_73btx"]
 [ext_resource type="StyleBox" uid="uid://dq3qxbdud5bs" path="res://UI/Upgrade Menu/menu_button.tres" id="1_y1gq2"]
 [ext_resource type="Texture2D" uid="uid://drlkrgtldm7v8" path="res://art/UI/menu_panel.png" id="2_w34vv"]
 [ext_resource type="Texture2D" uid="uid://cf7r1wb5v5ft7" path="res://art/icons/saw_blade.png" id="4_fbirp"]
-[ext_resource type="Texture2D" uid="uid://lfs715t7wcak" path="res://art/icons/fuel.webp" id="5_5qj2x"]
 
 [sub_resource type="Theme" id="Theme_jx4jo"]
 Button/styles/normal = ExtResource("1_y1gq2")
@@ -18,6 +17,7 @@ PanelContainer/styles/panel = SubResource("StyleBoxTexture_ay4nm")
 [sub_resource type="ImageTexture" id="ImageTexture_3y02g"]
 
 [node name="Upgrade_Menu" type="Control"]
+process_mode = 2
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -28,7 +28,7 @@ grow_vertical = 2
 theme = SubResource("Theme_jx4jo")
 script = ExtResource("1_73btx")
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="UpgradeScreenMargin" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -40,63 +40,110 @@ theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeScreenMargin"]
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="UpgradeScreenMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/VBoxContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="UpgradeScreenMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = SubResource("Theme_46rew")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer"]
 layout_mode = 2
 alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 50
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
-theme_override_constants/separation = 200
+theme_override_constants/separation = 0
 alignment = 1
 
-[node name="TextureRect2" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("4_fbirp")
-expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="Upgrade1" type="TextureButton" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_fbirp")
+ignore_texture_size = true
 stretch_mode = 5
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+[node name="Label" type="Label" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Example Text"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer"]
+clip_contents = true
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("5_5qj2x")
-expand_mode = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2"]
+layout_mode = 2
+
+[node name="Upgrade2" type="TextureButton" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+texture_normal = ExtResource("4_fbirp")
+ignore_texture_size = true
 stretch_mode = 5
 
-[node name="ConfirmButton" type="Button" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "Example Text"
+
+[node name="MarginContainer2" type="MarginContainer" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+size_flags_stretch_ratio = 0.0
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="Message" type="Label" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer2"]
+layout_mode = 2
+text = "Please choose an upgrade"
+
+[node name="Control2" type="Control" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="ConfirmButton" type="Button" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Confirm"
 icon = SubResource("ImageTexture_3y02g")
 
-[node name="Control" type="Control" parent="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer"]
+[node name="Control" type="Control" parent="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.1
 
-[node name="Control2" type="Control" parent="MarginContainer/VBoxContainer"]
+[node name="Control2" type="Control" parent="UpgradeScreenMargin/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[connection signal="button_down" from="MarginContainer/VBoxContainer/PanelContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_button_down"]
+[connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer/VBoxContainer/Upgrade1" to="." method="_on_upgrade_1_button_down"]
+[connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/MarginContainer/HBoxContainer/MarginContainer2/VBoxContainer/Upgrade2" to="." method="_on_upgrade_2_button_down"]
+[connection signal="button_down" from="UpgradeScreenMargin/VBoxContainer/PanelContainer/VBoxContainer/ConfirmButton" to="." method="_on_confirm_button_button_down"]

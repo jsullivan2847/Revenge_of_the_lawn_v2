@@ -26,7 +26,7 @@ func _on_area_2d_body_entered(body):
 		$dmg_freq_timer.start(frequency)
 		if(impact_sound):
 			AudioManager.play_clip($"Weapon Sound",impact_sound)
-		#print("impact damage: ",impact_damage)
+		#print_debug("impact damage: ",impact_damage)
 		
 func _on_area_2d_body_exited(body):
 	if body.is_in_group("Mob"):
@@ -41,12 +41,13 @@ func damage_enemies(current_damage):
 				enemy.process_damage(current_damage)
 
 func _on_tile_collider_body_entered(body):
+	print('body: ',body)
 	tile_collision_processing($TileCollider,body)
 	
 func tile_collision_processing(collider,body):
-	print('hit: ',body)
+	print('body: ',body.get_meta("type"))
+	#print_debug('hit: ',body.local_to_map(body.to_local(collider.global_position)))
 	var tile_pos = body.local_to_map(body.to_local(collider.global_position))
-	#print("cell atlas coords: ",body.get_cell_atlas_coords(0,tile_pos,false))
+	#print_debug("cell atlas coords: ",body.get_cell_atlas_coords(0,tile_pos,false))
 	body.erase_cell(1,tile_pos)
-	#body.set_cell(0,tile_pos,0,Vector2(0,7))
 	

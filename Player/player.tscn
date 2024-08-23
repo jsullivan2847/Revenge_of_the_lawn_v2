@@ -27,7 +27,7 @@ radius = 1198.17
 z_index = 5
 position = Vector2(351, 1010)
 scale = Vector2(0.5, 0.5)
-collision_mask = 3
+collision_mask = 6
 script = ExtResource("1_4f3he")
 flash_duration = 0.1
 

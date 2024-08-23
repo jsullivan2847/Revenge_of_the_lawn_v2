@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://4rf6sf4h5phu"
-path="res://.godot/imported/TileSheet (2).png-a15d87a8739e2d7888c27c60e9409a4e.ctex"
+uid="uid://b87w7wesmre81"
+path="res://.godot/imported/cut_grass_sprite_sheet_v1.png-d265a5722e321cb9d9afd48d93c0ac6b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/grass/TileSheet (2).png"
-dest_files=["res://.godot/imported/TileSheet (2).png-a15d87a8739e2d7888c27c60e9409a4e.ctex"]
+source_file="res://art/grass/cut_grass_sprite_sheet_v1.png"
+dest_files=["res://.godot/imported/cut_grass_sprite_sheet_v1.png-d265a5722e321cb9d9afd48d93c0ac6b.ctex"]
 
 [params]
 

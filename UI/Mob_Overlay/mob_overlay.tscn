@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://clnstrxfqx5gh"]
+[gd_scene load_steps=3 format=3 uid="uid://clnstrxfqx5gh"]
 
 [ext_resource type="Script" path="res://UI/Mob_Overlay/mob_overlay.gd" id="1_sjl14"]
+[ext_resource type="LabelSettings" uid="uid://daudlhrhvensa" path="res://art/fonts/game_over_text.tres" id="2_sfaqx"]
 
 [node name="Mob_Overlay" type="Node2D"]
 script = ExtResource("1_sjl14")
@@ -11,11 +12,21 @@ offset_bottom = 40.0
 scale = Vector2(5.76172, 5.76172)
 color = Color(1, 1, 1, 0)
 
-[node name="Type" type="Label" parent="Panel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 layout_mode = 0
-offset_left = -9.19864
-offset_top = -21.3478
-offset_right = 30.8014
-offset_bottom = 1.65221
-scale = Vector2(0.435845, 0.435845)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.400466, 0.400466)
+
+[node name="Type" type="Label" parent="Panel/VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 6
 text = "Test"
+
+[node name="Health" type="Label" parent="Panel/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Health"
+label_settings = ExtResource("2_sfaqx")

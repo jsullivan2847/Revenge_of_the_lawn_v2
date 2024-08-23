@@ -34,6 +34,6 @@ func get_state():
 func set_state(new_state):
 	if current_state != new_state:
 		current_state = new_state
-		print('state set to ',current_state)
+		print_debug('state set to ',current_state)
 	else:
-		print('state is already that')
+		print_debug('state is already that')

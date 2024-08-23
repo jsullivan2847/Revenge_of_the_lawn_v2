@@ -2,26 +2,27 @@
 
 [ext_resource type="PackedScene" uid="uid://curk8fuy41tv8" path="res://Weapons/base_weapon.tscn" id="1_0v3d7"]
 [ext_resource type="Script" path="res://Weapons/Lawnmower/new_lawnmower.gd" id="2_kp1ad"]
-[ext_resource type="Texture2D" uid="uid://c4n1pgele3bvq" path="res://art/grass/grass_blast.png" id="3_2cmxt"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_se5vt"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8tqxn"]
-atlas = ExtResource("3_2cmxt")
+atlas = SubResource("CompressedTexture2D_se5vt")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_os3pt"]
-atlas = ExtResource("3_2cmxt")
+atlas = SubResource("CompressedTexture2D_se5vt")
 region = Rect2(64, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5a41k"]
-atlas = ExtResource("3_2cmxt")
+atlas = SubResource("CompressedTexture2D_se5vt")
 region = Rect2(128, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yccem"]
-atlas = ExtResource("3_2cmxt")
+atlas = SubResource("CompressedTexture2D_se5vt")
 region = Rect2(192, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d8qch"]
-atlas = ExtResource("3_2cmxt")
+atlas = SubResource("CompressedTexture2D_se5vt")
 region = Rect2(256, 0, 64, 64)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_570eb"]

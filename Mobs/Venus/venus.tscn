@@ -10,7 +10,6 @@ size = Vector2(14.2192, 15.1173)
 [node name="Venus" instance=ExtResource("1_ft0h0")]
 position = Vector2(343, 404)
 scale = Vector2(0.8, 0.8)
-collision_layer = 2
 script = ExtResource("1_7ycxt")
 this_mob = 1
 health = 20

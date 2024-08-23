@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dgfuoxougine8"
-path="res://.godot/imported/transparency.png-4a99a285add6bc66df9b666ec1f430b8.ctex"
+uid="uid://brw8sg14jsdh5"
+path="res://.godot/imported/sidewalk_v1.png-28d2176cab1a0271e6acd5b1a61923dc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/grass/transparency.png"
-dest_files=["res://.godot/imported/transparency.png-4a99a285add6bc66df9b666ec1f430b8.ctex"]
+source_file="res://art/tiles/sidewalk/sidewalk_v1.png"
+dest_files=["res://.godot/imported/sidewalk_v1.png-28d2176cab1a0271e6acd5b1a61923dc.ctex"]
 
 [params]
 

@@ -10,14 +10,14 @@ var fuel_pickup_scene = preload("res://Pickups/fuel_pickup.tscn")
 #The higher the number the rarer the item will be
 var pickups = {
 	'Health': [health_pickup_scene, 2],
-	'Fuel': [fuel_pickup_scene, 10],
+	'Fuel': [fuel_pickup_scene, 15],
 }
 
-#var upgrades = {
-	#'Damage': [damage_upgrade_scene, 1],
-	#'Health': [health_upgrade_scene, 1],
-	#'Fuel': [fuel_upgrade_scene, 1]
-#}
+var upgrades = {
+	'Damage': ["damage", 1],
+	#'Health': ["health", 1],
+	'Fuel': ["fuel", 1]
+}
 
 # Precompute cumulative weights for the weighted selection
 var cumulative_weights = []
@@ -50,10 +50,20 @@ func drop_pickup(mob_type, mob_position):
 func select_weighted_pickup(weights):
 	total_weight = weights[0]
 	cumulative_weights = weights[1]
-	print('total_weight: ',total_weight)
-	print('cumulative_weights: ',cumulative_weights)
 	var rand_int = rng.randi_range(0, total_weight - 1)
 	for i in range(pickups.size()):
 		if rand_int < cumulative_weights[i]:
 			return pickups.values()[i][0]
 	return null
+	
+func select_weighted_upgrade(weights):
+	total_weight = weights[0]
+	cumulative_weights = weights[1]
+	var rand_int = rng.randi_range(0, total_weight - 1)
+	for i in range(upgrades.size()):
+		if rand_int < cumulative_weights[i]:
+			return upgrades.values()[i][0]
+	return null
+
+func get_weighted_upgrade():
+	return select_weighted_upgrade(calculate_element_weight())

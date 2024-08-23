@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c4n1pgele3bvq"
-path="res://.godot/imported/grass_blast.png-ccc097f4b81885896be0c5e6951017a0.ctex"
+uid="uid://bd1fncci00euw"
+path="res://.godot/imported/fence_sheet.png-3bee441114b471398ef256def59e96f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/grass/grass_blast.png"
-dest_files=["res://.godot/imported/grass_blast.png-ccc097f4b81885896be0c5e6951017a0.ctex"]
+source_file="res://art/tiles/fence/fence_sheet.png"
+dest_files=["res://.godot/imported/fence_sheet.png-3bee441114b471398ef256def59e96f1.ctex"]
 
 [params]
 

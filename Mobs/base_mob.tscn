@@ -4,7 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://clnstrxfqx5gh" path="res://UI/Mob_Overlay/mob_overlay.tscn" id="2_11uus"]
 
 [node name="BaseMob" type="CharacterBody2D" groups=["Mob"]]
-z_index = 2
+z_index = 4
+collision_layer = 2
 script = ExtResource("1_00j5s")
 flash_duration = 0.1
 
