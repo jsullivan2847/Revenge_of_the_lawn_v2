@@ -6,16 +6,16 @@ The idea is [vampire survivors](https://poncle.itch.io/vampire-survivors) but yo
 
 A player is dropped intoa suburban landscape and prompted to mow lawns to win upgrades.  
 
-![](screenshots/intro.png)
+![](https://github.com/jsullivan2847/Revenge_of_the_lawn_v2/raw/main/screenshots/intro.png)
 
 While moving around via on-screen joystick and working towards your goal - you're swarmed by mounstrous venus fly traps.  
 
-![](screenshots/damage.png)
+![](https://github.com/jsullivan2847/Revenge_of_the_lawn_v2/raw/main/screenshots/damage.png)
 
 
 
 After completing a lawn, a player is prompted to upgrade their fuel capacity, or the blade of their lawnmower. 
 
-![](screenshots/upgrades.png)
+![](https://github.com/jsullivan2847/Revenge_of_the_lawn_v2/raw/main/screenshots/upgrades.png)
 
-![](screenshots/game_over.png)
+![](https://github.com/jsullivan2847/Revenge_of_the_lawn_v2/raw/main/screenshots/game_over.png)
