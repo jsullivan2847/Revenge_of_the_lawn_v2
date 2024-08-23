@@ -10,7 +10,7 @@ var fuel_pickup_scene = preload("res://Pickups/fuel_pickup.tscn")
 #The higher the number the rarer the item will be
 var pickups = {
 	'Health': [health_pickup_scene, 2],
-	'Fuel': [fuel_pickup_scene, 10],
+	'Fuel': [fuel_pickup_scene, 15],
 }
 
 var upgrades = {

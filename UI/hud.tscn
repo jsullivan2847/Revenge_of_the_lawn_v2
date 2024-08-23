@@ -124,7 +124,8 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Kills: 0"
+text = "Kills: 0
+"
 label_settings = SubResource("LabelSettings_xbe8x")
 horizontal_alignment = 1
 

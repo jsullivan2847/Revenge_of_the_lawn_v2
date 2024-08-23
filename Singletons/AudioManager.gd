@@ -17,7 +17,7 @@ var SOUNDS = {
 
 func play_clip(player: AudioStreamPlayer2D, clip_key: String):
 	if SOUNDS.has(clip_key) == false:
-		print('audio clip: ',clip_key,' not found')
+		print_debug('audio clip: ',clip_key,' not found')
 		return
 	player.stream = SOUNDS[clip_key]
 	player.play()

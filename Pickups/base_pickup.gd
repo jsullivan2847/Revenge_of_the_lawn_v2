@@ -18,7 +18,7 @@ func _on_area_2d_body_entered(body):
 		pickup_effect()
 		
 func pickup_effect():
-	print('no pickup effect defined in class extension')
+	print_debug('no pickup effect defined in class extension')
 
 
 func _on_pickup_finished():

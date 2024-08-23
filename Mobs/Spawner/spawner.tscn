@@ -6,7 +6,6 @@
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_feoif")
 mob = ExtResource("2_2lkv8")
-frequency = 1.0
 
 [node name="SpawnFrequency" type="Timer" parent="."]
 autostart = true

@@ -36,7 +36,7 @@ func _on_confirm_button_button_down():
 			player.fuel = player.max_fuel
 		elif upgrade_choice == 'damage':
 			player.weapon.impact_damage += 5
-			print("damage increased to ",player.weapon.impact_damage)
+			print_debug("damage increased to ",player.weapon.impact_damage)
 			hud.set_damage_label()
 		elif upgrade_choice == 'health':
 			pass
@@ -44,7 +44,7 @@ func _on_confirm_button_button_down():
 			get_tree().paused = false
 			visible = false
 		else: 
-			print('game not paused')
+			print_debug('game not paused')
 	else:
 		pass
 		
@@ -54,7 +54,7 @@ func populate_upgrades():
 	upgrades[1] = (EventManager.get_weighted_upgrade())
 	while upgrades[1] == upgrades[0]:
 		upgrades[1] = EventManager.get_weighted_upgrade()
-	#print(upgrades)
+	#print_debug(upgrades)
 	for i in (upgrades.size()):
 		if upgrades[i] == 'fuel':
 			upgrade_containers[i].set_texture_normal(fuel_upgrade_icon)
@@ -66,9 +66,9 @@ func populate_upgrades():
 			pass
 
 func _on_upgrade_1_button_down():
-	#print(upgrades[0],' clicked')
+	#print_debug(upgrades[0],' clicked')
 	upgrade_choice = upgrades[0]
 
 func _on_upgrade_2_button_down():
-	#print(upgrades[1],' clicked')
+	#print_debug(upgrades[1],' clicked')
 	upgrade_choice = upgrades[1]

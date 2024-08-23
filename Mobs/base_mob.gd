@@ -49,7 +49,7 @@ func process_movement():
 		flip_sprite(direction)
 		move_and_slide()
 	else: 
-		print("no player set as target")
+		print_debug("no player set as target")
 		
 		
 func flip_sprite(direction):
@@ -73,7 +73,7 @@ func is_player_down (direction) -> bool:
 
 	
 func process_damage(damage_amount):
-	print_debug("damage_amount: ",damage_amount)
+	#print_debug("damage_amount: ",damage_amount)
 	#print_debug("damage: ",damage)
 	health -= damage_amount
 	sprite.material = mob_hurt_shader

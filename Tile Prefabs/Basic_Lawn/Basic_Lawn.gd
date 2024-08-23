@@ -5,9 +5,14 @@ var prev_cells_in_area
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	#print_debug(GameManager.get_signal_list())
+	#GameManager.connect(lawn_complete,reload_lawn())
+	cells_in_area = tilemap.get_used_cells(1).size() 
+	#print_debug(tilemap.get_layer_name(1))
+	#print_debug(cells_in_area)
 	
-
+func reload_lawn():
+	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):

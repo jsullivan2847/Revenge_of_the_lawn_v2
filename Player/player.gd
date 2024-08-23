@@ -32,7 +32,7 @@ func _ready():
 	GameManager.connect("mob_death",on_mob_death)
 	
 func _physics_process(delta) -> void:
-	#print("speed: ",speed)
+	#print_debug("speed: ",speed)
 	process_joystick(delta)
 	move_and_slide()
 
@@ -58,24 +58,24 @@ func process_joystick(delta):
 
 
 func _on_hit_box_body_entered(body):
-	#tracks how many enemies currently touching
-	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['this_mob'] == body.this_mob)
-	if enemy_already_touching:
-		var enemy_index = enemies_touching.find(enemy_already_touching[0])
-		enemies_touching[enemy_index].amount += 1
-	else: 
-		enemies_touching.append({"this_mob":body.this_mob,"damage":body.damage,"amount":1})
+	if body.is_in_group("Mob"):
+		var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['this_mob'] == body.this_mob)
+		if enemy_already_touching:
+			var enemy_index = enemies_touching.find(enemy_already_touching[0])
+			enemies_touching[enemy_index].amount += 1
+		else: 
+			enemies_touching.append({"this_mob":body.this_mob,"damage":body.damage,"amount":1})
 
 func _on_hit_box_body_exited(body):
-	#tracks how many enemies currently touching
-	var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['this_mob'] == body.this_mob)
-	if enemy_already_touching:
-		var enemy_index = enemies_touching.find(enemy_already_touching[0])
-		enemies_touching[enemy_index].amount -= 1
-	var enemies_at_zero = enemies_touching.filter(func(enemy): return enemy['amount'] == 0)
-	if(enemies_at_zero):
-		for enemy in enemies_at_zero:
-			enemies_touching.erase(enemy)
+	if body.is_in_group("Mob"):
+		var enemy_already_touching = enemies_touching.filter(func(enemy): return enemy['this_mob'] == body.this_mob)
+		if enemy_already_touching:
+			var enemy_index = enemies_touching.find(enemy_already_touching[0])
+			enemies_touching[enemy_index].amount -= 1
+		var enemies_at_zero = enemies_touching.filter(func(enemy): return enemy['amount'] == 0)
+		if(enemies_at_zero):
+			for enemy in enemies_at_zero:
+				enemies_touching.erase(enemy)
 	
 	
 func process_damage(enemies):

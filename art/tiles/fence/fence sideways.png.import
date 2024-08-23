@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bvg5wbu7b5kb7"
-path="res://.godot/imported/grass_texture.png-1d15fb8ababdd11189f0115a59011f2d.ctex"
+uid="uid://gso0pdwojbwp"
+path="res://.godot/imported/fence sideways.png-c2c6ef67847773e8f52fabf116b01551.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://art/grass/grass_texture.png"
-dest_files=["res://.godot/imported/grass_texture.png-1d15fb8ababdd11189f0115a59011f2d.ctex"]
+source_file="res://art/tiles/fence/fence sideways.png"
+dest_files=["res://.godot/imported/fence sideways.png-c2c6ef67847773e8f52fabf116b01551.ctex"]
 
 [params]
 
